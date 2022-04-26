@@ -2,3 +2,21 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
+
+# INITIAL DATASET 
+# ===============
+articles_raw:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/articles.csv
+
+customers_raw:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/customers.csv
+
+transactions_train_raw:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/transactions_train.csv
+
+sample_submission:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/sample_submission.csv
