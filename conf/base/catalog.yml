@@ -20,3 +20,24 @@ transactions_train_raw:
 sample_submission:
   type: pandas.CSVDataSet
   filepath: data/01_raw/sample_submission.csv
+
+
+# INTERMEDIATE DATASET
+# ====================
+articles:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/articles.parquet
+  save_args:
+    index: False
+
+customers:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/customers.parquet
+  save_args:
+    index: False
+
+transactions_train:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/transactions_train.parquet
+  save_args:
+    index: False
