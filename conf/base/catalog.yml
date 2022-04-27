@@ -41,3 +41,24 @@ transactions_train:
   filepath: data/02_intermediate/transactions_train.parquet
   save_args:
     index: False
+
+
+# PRIMARY DATASET
+# ===============
+
+
+
+
+# FEATURE DATASET
+# ===============
+transactions_train_date:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/transactions_train.parquet
+  load_args:
+    columns: ["t_dat"]
+
+transactions_train_time_ft:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/transactions_train_time_ft.parquet
+  save_args:
+    index: False
