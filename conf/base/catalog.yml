@@ -51,12 +51,6 @@ transactions_train:
 
 # FEATURE DATASET
 # ===============
-transactions_train_date:
-  type: pandas.ParquetDataSet
-  filepath: data/02_intermediate/transactions_train.parquet
-  load_args:
-    columns: ["t_dat"]
-
 transactions_train_time_ft:
   type: pandas.ParquetDataSet
   filepath: data/04_feature/transactions_train_time_ft.parquet

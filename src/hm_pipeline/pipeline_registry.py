@@ -17,7 +17,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
     feature_engineering_pipeline = fte.create_pipeline()
 
     return {
-        "__default__": data_trimmer_pipeline,
+        "__default__": data_trimmer_pipeline + feature_engineering_pipeline,
         "dtrim": data_trimmer_pipeline,
         "fte": feature_engineering_pipeline
     }
