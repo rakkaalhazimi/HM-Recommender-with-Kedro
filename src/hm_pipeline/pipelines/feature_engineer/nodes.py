@@ -21,9 +21,6 @@ def get_time_factor(df: pd.DataFrame) -> pd.DataFrame:
     Convert datetime features into unique integer
 
     """
-    # Convert date string to datetime
-    df["t_dat"] = pd.to_datetime(df["t_dat"])
-
     # Factorize days
     day_factor, _ = pd.factorize(df["t_dat"])
 
@@ -45,4 +42,7 @@ def time_transform(transactions_train_date: pd.DataFrame):
     transactions_train_time_ft["day_sin"] = sin_transformer(365).fit_transform(transactions_train_time_ft["day"])
     transactions_train_time_ft["day_cos"] = cos_transformer(365).fit_transform(transactions_train_time_ft["day"])
 
-    return transactions_train_date
+    transactions_train_time_ft["week_sin"] = sin_transformer(52).fit_transform(transactions_train_time_ft["week"])
+    transactions_train_time_ft["week_cos"] = cos_transformer(52).fit_transform(transactions_train_time_ft["week"])
+
+    return transactions_train_time_ft
