@@ -30,14 +30,15 @@ def get_time_factor(df: pd.DataFrame) -> pd.DataFrame:
     del df["t_dat"]
 
     # Add new columns
-    df["day"] = day_factor + 1
-    df["week"] = (day_factor // 7) + 1
+    df["day"] = day_factor
+    df["week"] = (day_factor // 7)
 
     return df
 
 
 def time_transform(df: pd.DataFrame):
     # Fetch time factors
+    df = pd.DataFrame({"t_dat": df["t_dat"].unique()})
     df = get_time_factor(df)
 
     # Day index to sin and cos
@@ -51,8 +52,7 @@ def time_transform(df: pd.DataFrame):
 
 
 def feature_engineer(transactions_train: pd.DataFrame):
-    date_columns = transactions_train[["t_dat"]]
-    transactions_train_time_ft = time_transform(date_columns)
+    transactions_train_time_ft = time_transform(transactions_train)
 
     return transactions_train_time_ft
 

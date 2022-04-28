@@ -2,10 +2,11 @@
 This is a boilerplate pipeline 'data_trimmer'
 generated using Kedro 0.18.0
 """
+from typing import List
 import pandas as pd
 
 
-def _customer_id_to_int(long_id: str) -> int:
+def _long_id_to_int(long_id: str) -> int:
     """
     Convert customer id into memory safe integer
 
@@ -13,12 +14,12 @@ def _customer_id_to_int(long_id: str) -> int:
     return int(long_id[-16:], base=16)
 
 
-def trim_customer_id(df: pd.DataFrame) -> pd.DataFrame:
+def trim_long_id(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
     """
-    Apply memory safe transformations onto customer_id column
+    Apply memory safe transformations onto specified column
 
     """
-    df["customer_id"] = df["customer_id"].map(_customer_id_to_int)
+    df[columns] = df[columns].applymap(_long_id_to_int)
     return df
 
 
@@ -39,8 +40,8 @@ def trim_data_memory(articles_raw, customers_raw, transactions_train_raw):
     """
     # Trim data
     articles = trim_article_id(articles_raw)
-    customers = trim_customer_id(customers_raw)
-    transactions_train = trim_customer_id(transactions_train_raw)
+    customers = trim_long_id(customers_raw, columns=["customer_id", "postal_code"])
+    transactions_train = trim_long_id(transactions_train_raw, columns=["customer_id"])
     transactions_train = trim_article_id(transactions_train)
 
     return articles, customers, transactions_train
