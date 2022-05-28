@@ -56,3 +56,14 @@ transactions_train_time_ft:
   filepath: data/04_feature/transactions_train_time_ft.parquet
   save_args:
     index: False
+
+
+# MODEL INPUT
+# =============
+article_vocabulary:
+  type: text.TextDataSet
+  filepath: data/05_model_input/article_vocabulary.txt
+
+customer_vocabulary:
+  type: text.TextDataSet
+  filepath: data/05_model_input/customer_vocabulary.txt
